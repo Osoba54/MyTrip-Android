@@ -2,7 +2,7 @@ package com.example.mytrip
 
 import android.content.Context
 import com.example.mytrip.authApi.AuthApiService
-import com.example.mytrip.repositories.AuthRepository
+import com.example.mytrip.repositories.AuthRepositoryImpl
 import com.example.mytrip.authApi.TokenManager
 import dagger.Module
 import dagger.Provides
@@ -20,9 +20,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
-        val url: String = "http://localhost:8000/"
         return Retrofit.Builder()
-            .baseUrl(url)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -43,8 +42,9 @@ object AppModule {
     @Singleton
     fun provideAuthRepository(
         authApiService: AuthApiService,
-        tokenManager: TokenManager
-    ): AuthRepository {
-        return AuthRepository(authApiService, tokenManager)
+        tokenManager: TokenManager,
+        @ApplicationContext context: Context
+    ): AuthRepositoryImpl {
+        return AuthRepositoryImpl(authApiService, tokenManager, context)
     }
 }

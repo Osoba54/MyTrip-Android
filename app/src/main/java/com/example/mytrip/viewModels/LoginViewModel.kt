@@ -1,10 +1,10 @@
 package com.example.mytrip.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mytrip.repositories.AuthRepository
+import com.example.mytrip.R
 import com.example.mytrip.authApi.LoginRequest
+import com.example.mytrip.repositories.AuthRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val repository: AuthRepository
+    private val repository: AuthRepositoryImpl
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Idle)
     val uiState = _uiState.asStateFlow()
@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
                 repository.login(request)
                 _uiState.value = LoginUiState.Success
             } catch (e: Exception) {
-                _uiState.value = LoginUiState.Error(e.message ?: "Logowanie nie udane")
+                _uiState.value = LoginUiState.Error(e.message,R.string.text_login_failed)
             }
         }
     }

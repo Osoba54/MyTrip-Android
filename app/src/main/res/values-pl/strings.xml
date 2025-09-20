@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_home">Home</string>
+    <string name="menu_account">Konto</string>
+    <string name="menu_trip">Wycieczki</string>
+    <string name="menu_login">Logowanie</string>
+    <string name="menu_register">Rejestracja</string>
+
+    <string name="button_logout">Wyloguj się</string>
+    <string name="button_login">Zaloguj się</string>
+
+    <string name="text_login_failed">Logowanie nieudane</string>
+    <string name="text_register">Aby zarejestrować się skorzystaj ze strony internetowej</string>
+
+    <string name="error_400">Błędne Żądanie (400)</string>
+    <string name="error_401">Brak Autoryzacji (401)</string>
+    <string name="error_403">Brak dostępu (403)</string>
+    <string name="error_404">Nie Ma Takiego Zasobu (404)</string>
+    <string name="error_500">Błąd Serwera (500)</string>
+    <string name="error_503">Usługi Tymczasowo Niedostępne (503)</string>
+    <string name="error_unknown">Nieznany Błąd (%1$d)</string>
+
+    <string name="label_choose_zip_file">Wybierz plik zip</string>
+    <string name="label_password">Hasło</string>
+    <string name="label_login">Login</string>
+
+</resources>

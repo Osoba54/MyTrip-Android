@@ -7,6 +7,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.mytrip.R
 
 @Composable
 fun RegisterScreen() {
@@ -15,6 +17,6 @@ fun RegisterScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Aby zarejestrować się skorzystaj ze strony")
+        Text(stringResource(R.string.text_register))
     }
 }

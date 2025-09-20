@@ -1,10 +1,8 @@
 package com.example.mytrip.authApi
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import kotlin.getValue
 
 
 class TokenManager(context: Context) {
