@@ -5,6 +5,7 @@ import com.example.mytrip.R
 import com.example.mytrip.authApi.AuthApiService
 import com.example.mytrip.authApi.LoginRequest
 import com.example.mytrip.authApi.TokenManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,7 +13,7 @@ import javax.inject.Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val authApiService: AuthApiService,
     private val tokenManager: TokenManager,
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) : AuthRepository {
 
     override suspend fun login(request: LoginRequest){

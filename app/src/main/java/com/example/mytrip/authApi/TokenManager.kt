@@ -3,9 +3,11 @@ package com.example.mytrip.authApi
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 
-class TokenManager(context: Context) {
+class TokenManager @Inject constructor(@ApplicationContext context: Context) {
     private val encryptedPrefs by lazy {
         EncryptedSharedPreferences.create(
             "secure_auth_prefs",

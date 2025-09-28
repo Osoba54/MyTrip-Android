@@ -12,6 +12,7 @@
 
     <string name="text_login_failed">Login failed</string>
     <string name="text_register">Use our website to register</string>
+    <string name="text_empty_list">Empty list</string>
 
     <string name="error_400">Bad Request (400)</string>
     <string name="error_401">Unauthorized (401)</string>
@@ -24,5 +25,7 @@
     <string name="label_choose_zip_file">Choose zip file</string>
     <string name="label_password">Password</string>
     <string name="label_login">Login</string>
+    <string name="error_import">Import Error</string>
+    <string name="text_successful_import">Success</string>
 
 </resources>

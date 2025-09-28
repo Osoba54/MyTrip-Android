@@ -12,6 +12,7 @@
     <string name="text_login_failed">Logowanie nieudane</string>
     <string name="text_register">Aby zarejestrować się skorzystaj ze strony internetowej</string>
 
+    <string name="text_empty_list">Brak Plików</string>
     <string name="error_400">Błędne Żądanie (400)</string>
     <string name="error_401">Brak Autoryzacji (401)</string>
     <string name="error_403">Brak dostępu (403)</string>
@@ -23,5 +24,7 @@
     <string name="label_choose_zip_file">Wybierz plik zip</string>
     <string name="label_password">Hasło</string>
     <string name="label_login">Login</string>
+    <string name="error_import">Import Nie Udany</string>
+    <string name="text_successful_import">Zaimportowano Wycieczkę!</string>
 
 </resources>
