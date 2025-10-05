@@ -2,6 +2,8 @@ package com.example.mytrip.authApi
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface AuthApiService {
@@ -10,4 +12,7 @@ interface AuthApiService {
 
     @POST("api/token/refresh/")
     suspend fun refreshToken(@Body request: RefreshTokenRequest): Response<TokenResponse>
+
+    @GET("api/private-data/")
+    suspend fun getPrivateData(@Header("Authorization") authHeader: String): PrivateDataResponse
 }
