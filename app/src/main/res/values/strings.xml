@@ -27,5 +27,7 @@
     <string name="label_login">Login</string>
     <string name="error_import">Import Error</string>
     <string name="text_successful_import">Success</string>
+    <string name="error_network">Network Error (%1$d)</string>
+    <string name="error_token_missing">Token not found</string>
 
 </resources>

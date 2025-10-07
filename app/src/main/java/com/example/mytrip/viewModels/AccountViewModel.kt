@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mytrip.R
 import com.example.mytrip.UiMessage
-import com.example.mytrip.authApi.AuthApiService
-import com.example.mytrip.authApi.TokenManager
+import com.example.mytrip.model.Result
 import com.example.mytrip.repositories.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,9 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val authApiService: AuthApiService,
-    private val tokenManager: TokenManager
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LogoutUiState>(LogoutUiState.Idle)
@@ -31,23 +28,24 @@ class AccountViewModel @Inject constructor(
                 authRepository.logout()
                 _uiState.value = LogoutUiState.Success
             } catch (e: Exception) {
-                _uiState.value = LogoutUiState.Error(e.message)
+                _uiState.value = if (e.message != null){
+                    LogoutUiState.Error(UiMessage.Text(e.message!!))
+                } else {
+                    LogoutUiState.Error(UiMessage.Resource(R.string.error_unknown, listOf(999)))
+                }
             }
         }
     }
 
     fun fetchPrivateData(){
         viewModelScope.launch {
-            try {
-                val token = tokenManager.getAccessToken()
-                if (token != null){
-                    val response = authApiService.getPrivateData("Bearer $token")
-                    _privateMessage.value = UiMessage.Text(response.message)
-                } else {
-                    _privateMessage.value = UiMessage.Resource(R.string.error_unknown)
+            when (val result = authRepository.fetchPrivateData()){
+                is Result.Success -> {
+                    _privateMessage.value = UiMessage.Text(result.data)
                 }
-            } catch (e: Exception){
-                _privateMessage.value = UiMessage.Resource(R.string.error_unknown)
+                is Result.Error -> {
+                    _privateMessage.value = mapDomainErrorToUiMessage(result.error)
+                }
             }
         }
     }

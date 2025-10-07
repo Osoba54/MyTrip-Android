@@ -26,5 +26,7 @@
     <string name="label_login">Login</string>
     <string name="error_import">Import Nie Udany</string>
     <string name="text_successful_import">Zaimportowano Wycieczkę!</string>
+    <string name="error_network">Błąd Sieci (%1$d)</string>
+    <string name="error_token_missing">Nie znaleziono tokenu</string>
 
 </resources>

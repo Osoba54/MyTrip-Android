@@ -3,6 +3,7 @@ package com.example.mytrip.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mytrip.R
+import com.example.mytrip.UiMessage
 import com.example.mytrip.authApi.LoginRequest
 import com.example.mytrip.repositories.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +26,13 @@ class LoginViewModel @Inject constructor(
                 repository.login(request)
                 _uiState.value = LoginUiState.Success
             } catch (e: Exception) {
-                _uiState.value = LoginUiState.Error(R.string.text_login_failed)
+                _uiState.value = LoginUiState.Error(
+                    if (e.message != null) {
+                        UiMessage.Text(e.message!!)
+                    } else {
+                        UiMessage.Resource(R.string.error_unknown, listOf(999))
+                    }
+                )
             }
         }
     }

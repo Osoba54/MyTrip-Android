@@ -5,7 +5,10 @@ import com.example.mytrip.R
 import com.example.mytrip.authApi.AuthApiService
 import com.example.mytrip.authApi.LoginRequest
 import com.example.mytrip.authApi.TokenManager
+import com.example.mytrip.model.DomainError
+import com.example.mytrip.model.Result
 import dagger.hilt.android.qualifiers.ApplicationContext
+import retrofit2.HttpException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,6 +46,21 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun logout(){
         tokenManager.clearTokens()
+    }
+
+    override suspend fun fetchPrivateData(): Result<String> {
+        return try {
+            val token = tokenManager.getAccessToken()
+            if (token.isNullOrBlank()) {
+                return Result.Error(DomainError.TokenMissing)
+            }
+            val response = authApiService.getPrivateData("Bearer $token")
+            Result.Success(response.message)
+        } catch (e: HttpException){
+            Result.Error(DomainError.NetworkError(e.code(), e.message()))
+        } catch (e: Exception){
+            Result.Error(DomainError.UnknownError(e))
+        }
     }
 
 }

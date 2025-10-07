@@ -80,7 +80,7 @@ fun LoginScreen(
         is LoginUiState.Success -> LaunchedEffect(Unit) { onLoginSuccess() }
         is LoginUiState.Error -> {
             Text(
-                text = stringResource((uiState as LoginUiState.Error).messageResId),
+                text = "",
                 color = MaterialTheme.colorScheme.error,
                 modifier = Modifier.padding(top = 16.dp)
             )

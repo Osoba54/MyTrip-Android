@@ -50,7 +50,7 @@ fun AccountScreen(
         Text(
             text = when (val msg = privateMessage) {
                 is UiMessage.Text -> msg.text
-                is UiMessage.Resource -> stringResource(msg.resourceId, 0)
+                is UiMessage.Resource -> stringResource(msg.resourceId, *msg.args.toTypedArray())
             }, modifier = Modifier.padding(16.dp)
         )
     }
